@@ -59,6 +59,10 @@ mongoose.connect(process.env.DATABASE, {
       
     // })
     //error middleware
+app.get('/', (req, res) => {
+    res.send('Welcome to my backend API!');
+});
+
     app.use(errorHandler)
 
 
