@@ -62,6 +62,10 @@ mongoose.connect(process.env.DATABASE, {
 app.get('/', (req, res) => {
     res.send('Welcome to my backend API!');
 });
+app.get('/favicon.ico', (req, res) => {
+    // Send a 204 "No Content" status code
+    res.status(204).end();
+});
 
     app.use(errorHandler)
 
