@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express=require("express")
 const mongoose=require("mongoose")
 const app=express()
@@ -75,3 +76,11 @@ const port = process.env.PORT ||9000;
 app.listen(port,()=>{
     console.log(`Server running on the port ${port}`);
 })
+const corsOptions = {
+  origin: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : [],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
