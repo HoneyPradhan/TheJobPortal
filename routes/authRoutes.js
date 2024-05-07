@@ -19,7 +19,7 @@ router.post('/sign_in',sign_in)
 router.get('/logout',logout)
 
 // /api/me
-router.get('/me',isAuthenticated,userProfile)
+router.get('/me',userProfile)
 
 
 module.exports= router
