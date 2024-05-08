@@ -5,7 +5,7 @@ const app=express()
 const morgan =require("morgan")
 const bodyParser=require("body-parser")
 require("dotenv").config()
-var cors=require("cors")
+const cors=require("cors")
 
 //IMPORT ROUTES
 const authRoutes =require('./routes/authRoutes')
@@ -43,7 +43,7 @@ mongoose.connect(process.env.DATABASE, {
     }))
 
     app.use(cookieParser())
-    app.use(cors())
+    // app.use(cors())
     app.use('/api',authRoutes)
 
     app.use('/api',userRoutes)
@@ -69,6 +69,26 @@ app.get('/favicon.ico', (req, res) => {
 });
 
     app.use(errorHandler)
+
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+
+// Configure CORS middleware dynamically
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests from whitelisted origins
+      callback(null, true);
+    } else {
+      // Block requests from non-whitelisted origins
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow all HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Adjust allowed headers as needed
+  credentials: true // Set to true if your client-side application sends credentials (e.g., cookies)
+}));
+
 
 
 const port = process.env.PORT ||9000;
