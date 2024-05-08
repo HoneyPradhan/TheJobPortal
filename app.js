@@ -5,7 +5,7 @@ const app=express()
 const morgan =require("morgan")
 const bodyParser=require("body-parser")
 require("dotenv").config()
-const cors=require("cors")
+
 
 //IMPORT ROUTES
 const authRoutes =require('./routes/authRoutes')
