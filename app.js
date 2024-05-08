@@ -72,7 +72,7 @@ app.get('/favicon.ico', (req, res) => {
     app.use(errorHandler)
 
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+// const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
 
 
